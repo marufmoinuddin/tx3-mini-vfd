@@ -69,21 +69,53 @@ sudo vfd_controller
 
 ### Running as System Service
 
+#### Quick Installation (Recommended)
 ```bash
-# Create and install service
+# Use the automated installer
+./install_service.sh
+```
+
+#### Manual Installation
+```bash
+# Compile and install
+make install
+
+# Install and enable systemd service
+make enable-service
+
+# Or install service without auto-enabling
 make service
-
-# Enable service to start on boot
 sudo systemctl enable vfd-controller.service
-
-# Start service immediately
 sudo systemctl start vfd-controller.service
+```
 
+#### Service Management Commands
+```bash
 # Check service status
+make status
+# OR
 sudo systemctl status vfd-controller.service
 
-# View logs
+# View real-time logs
+make logs
+# OR
 sudo journalctl -u vfd-controller.service -f
+
+# Stop the service
+make stop
+# OR
+sudo systemctl stop vfd-controller.service
+
+# Restart the service
+make restart
+# OR
+sudo systemctl restart vfd-controller.service
+
+# Disable service (stop auto-start)
+sudo systemctl disable vfd-controller.service
+
+# Complete uninstall
+make uninstall
 ```
 
 ### Stopping the Program
